@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
-    // к сожалению, разработчики не дали нам удобного селектора, поэтому так
     private ElementsCollection cards = $$(".list__item div");
     private final SelenideElement heading = $("[data-test-id=dashboard]");
     private final String balanceStart = "баланс: ";
@@ -24,10 +23,7 @@ public class DashboardPage {
         var text = cards.findBy(Condition.text(maskedCarNumber)).getText();
         return extractBalance(text);
     }
-//    public int getCardBalance(int index) {
-//        val text = cards.get(index).getText();
-//        return extractBalance(text);
-//    }
+
     public TransferPage selectCardTransfer(DataHelper.CardInfo cardInfo) {
         cards.findBy(Condition.attribute("data-test-id",cardInfo.getTestId())).$("button").click();
         return new TransferPage();
